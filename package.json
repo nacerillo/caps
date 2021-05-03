@@ -1,0 +1,23 @@
+{
+  "name": "caps",
+  "version": "1.0.0",
+  "description": "Class 401 - Lab11",
+  "main": "caps.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nacerillo/caps.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nacerillo/caps/issues"
+  },
+  "homepage": "https://github.com/nacerillo/caps#readme",
+  "dependencies": {
+    "faker": "^5.5.3"
+  }
+}
