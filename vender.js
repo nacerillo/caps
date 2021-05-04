@@ -1,8 +1,11 @@
-const events = require("./events");
+const io = require("socket.io-client");
+const { Socket } = require("socket.io-client");
 var faker = require("faker");
 
-events.on("delivered", handlePickup);
+let host = "http://localhost:3000";
 
+const capsConnect = io.connect(`${host}/caps`);
+capsConnect.on("delivered", handlePickup);
 setInterval(() => {
   var storeName = "MY Store!"; // process.env ==
   var orderID = faker.datatype.uuid(); // Kassandra.Haley@erich.biz
@@ -14,7 +17,7 @@ setInterval(() => {
     customer: customer,
     address: address,
   };
-  events.emit("pickup", newItem); //create fake item data;
+  capsConnect.emit("pickup", newItem); //create fake item data;
 }, 5000);
 
 function handlePickup(payload) {
