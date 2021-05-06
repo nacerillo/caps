@@ -6,7 +6,7 @@
 
 ### Links and Resources
 
-- [ci/cd](https://github.com/nacerillo/caps)
+- [ci/cd](https://github.com/nacerillo/caps/tree/code-review-version/caps-inclass)
 - [Actions]()
 
 ### Setup
