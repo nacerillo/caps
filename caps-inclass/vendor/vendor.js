@@ -1,20 +1,27 @@
 "use strict";
 
 const faker = require("faker");
-
 const io = require("socket.io-client");
-const SERVER_URL = "http://localhost:3000";
-const socket = io.connect(`${SERVER_URL}/caps`);
+const HOST = "http://localhost:3000";
+const { thankYouHandler } = require("./vendor-handler.js");
+const socket = io.connect(`${HOST}/caps`);
 
-const store = "1-800-flowerz";
+const store = process.argv.splice(2)[0];
 
 socket.emit("join", store);
-
-socket.on("delivered", (payload) => {
-  console.log("Item # - delievered", payload.orderID);
+socket.emit("getAll");
+socket.on("message", (message) => {
+  console.log("message", message.payload);
+  socket.emit("received", message);
 });
 
-setInterval(() => {
+/*socket.on("delivered", (payload) => {
+  console.log("Item # - delievered", payload.orderID);
+});*/
+
+socket.on("delievered", thankYouHandler);
+
+/*setInterval(() => {
   let pkage = {
     store: store,
     orderID: faker.datatype.uuid(),
@@ -22,4 +29,4 @@ setInterval(() => {
     address: faker.address.streetAddress(),
   };
   socket.emit("pickup", pkage);
-}, 5000);
+}, 5000);*/
